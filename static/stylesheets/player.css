@@ -1,0 +1,40 @@
+#player {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: 40px;
+	right: 0;
+	text-align: center;
+}
+
+.prev {
+	background-image: url('../images/prev.png');
+	padding: 20px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	background-position: 50% 50%;
+}
+
+.next {
+	background-image: url('../images/next.png');
+	padding: 20px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	background-position: 50% 50%;
+}
+
+.play {
+	background-image: url('../images/play.png');
+	padding: 20px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	background-position: 50% 50%;
+}
+
+.stop {
+	background-image: url('../images/stop.png');
+	padding: 20px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	background-position: 50% 50%;
+}

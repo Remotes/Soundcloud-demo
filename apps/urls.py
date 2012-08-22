@@ -7,8 +7,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', direct_to_template, { "template" : "welcome.html"}),
-    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^$', direct_to_template, { "template" : "welcome.html"}),
+    url(r'^callback/^', direct_to_template, { "template" : "soundcloud.callback.html"}),
+    url(r'^$', direct_to_template, { "template" : "soundcloud.html", "extra_context" : { "debug" : getattr(settings,"DEBUG") } }),
+    #url(r'^admin/', include(admin.site.urls)),
 )
 
 if getattr(settings,"DEBUG"):

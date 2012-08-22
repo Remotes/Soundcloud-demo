@@ -15,13 +15,13 @@ DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 # AWS settings
 
 #Your Amazon Web Services access key, as a string.
-AWS_ACCESS_KEY_ID = ""
+AWS_ACCESS_KEY_ID = "AKIAIHMFFCLYZGNTZWOQ"
 
 #Your Amazon Web Services secret access key, as a string.
-AWS_SECRET_ACCESS_KEY = ""
+AWS_SECRET_ACCESS_KEY = "XDY1fzzyd0z/hZxC/kfL52HJvuZjTqqQ764MO+2o"
 
 #Your Amazon Web Services storage bucket name, as a string.
-AWS_STORAGE_BUCKET_NAME = ""
+AWS_STORAGE_BUCKET_NAME = "remoats-soundcloud"
 
 #Additional headers to pass to S3
 AWS_HEADERS = {}
