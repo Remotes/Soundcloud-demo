@@ -1,4 +1,4 @@
-define(["Backbone","underscore","libs/remoats"], function(Backbone, _){
+define(["Backbone","underscore","remoats"], function(Backbone, _){
 
 
 	var RemoteControl = function(){

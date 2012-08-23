@@ -10,7 +10,7 @@ requirejs.config({
     "soundcloud" : "http://connect.soundcloud.com/sdk", 
     "handlebars" : "libs/handlebars",
     "modernizr" : "libs/modernizr",
-    "settings" : "settings"
+    "remoats" : "libs/remoats"
   },
 
   shim: {
@@ -39,7 +39,7 @@ requirejs.config({
 
     "libs/backbone.tyler" : ['Backbone', 'handlebars'],
     "libs/jquery.gallery" : ['jquery', 'modernizr'],
-    "libs/remoats" : []
+    "remoats" : []
 
   },
 

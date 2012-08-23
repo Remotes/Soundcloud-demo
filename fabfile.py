@@ -11,4 +11,4 @@ def collectstatic():
     local("python manage.py collectstatic --settings=settings.prod")
 
 def compile_js():
-    local("node static/scripts/build/r.js -o static/scripts/build/Application.build.js")
+    local("node ./static/scripts/build/r.js -o ./static/scripts/build/Application.build.js")

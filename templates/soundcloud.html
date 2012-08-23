@@ -14,8 +14,15 @@
 	<div id="gallery" style="margin-top:100px;"></div>
 	<div id="player"></div>
 
+	{% if debug %}
+
+		<script type="text/javascript" data-main="static/scripts/Application" src="{% static 'scripts/libs/require.js' %}"></script>
+
+	{% else %}
+
+		<script type="text/javascript" src="{% static 'scripts/distrib/application.js' %}"></script>
+
+	{% endif %}
 	
-	<script type="text/javascript" data-main="{% static 'scripts/Application.js' %}" 
-	 	src="{% static 'scripts/libs/require.js' %}"></script>
 </body>
 </html>
