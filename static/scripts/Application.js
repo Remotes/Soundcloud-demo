@@ -7,9 +7,10 @@ requirejs.config({
     "underscore" : "libs/underscore",
     "Backbone" : "libs/backbone",
     "text" : "libs/text",
-    "soundcloud" : "http://connect.soundcloud.com/sdk",
+    "soundcloud" : "http://connect.soundcloud.com/sdk", 
     "handlebars" : "libs/handlebars",
-    "modernizr" : "libs/modernizr"
+    "modernizr" : "libs/modernizr",
+    "settings" : "settings"
   },
 
   shim: {
