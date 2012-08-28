@@ -706,46 +706,76 @@ define('oats/ClientBootstrap',[], function(){
 
 	return Bootstrap;
 });
-define('oats/Client',["./Catcher", "./ClientBootstrap", "settings"], 
-	function(Catcher,ClientBootstrap,settings){
+define('oats/Client',["./Catcher", "./ClientBootstrap", "settings"], function(Catcher,ClientBootstrap,settings){
 		
-		function Client(applicationKey){
+
+		var supportedEvents = {
+			onReady : true,
+			onError : true,
+			onEvent : true,
+			onTap : true,
+			onSwipeLeft : true,
+			onSwipeRight : true,
+			onSwipeDown : true,
+			onSwipeUp : true,
+			onDragStart : true,
+			onDragEnd : true,
+			onDragging : true
+		};
+
+		function Client(applicationKey, events){
 			
 			var that = this;
-			var that = this;
+			events = events || {};
+
+			//validate the event hash
+			for(var e in events){
+				if(!(e in supportedEvents)){
+					throw new Error("Event " + e + " is not supported");
+				}
+			}
+
+			
 			var bootstrap = new ClientBootstrap();
+			
 			bootstrap.onReady = function(){
-				that.__setupCatcher();
+				that.__setupCatcher(events);
 			};
+
 			bootstrap.check();
 			
 		}
 
 		Client.prototype = {
 
-			__setupCatcher : function(channelName){
-				this.catcher = new Catcher(channelName, this.remote);
-				this.catcher.onSwipeLeft = this.onSwipeLeft;
-				this.catcher.onSwipeRight = this.onSwipeRight;
-				this.catcher.onSwipeUp = this.onSwipeUp;
-				this.catcher.onSwipeDown = this.onSwipeDown;
-				this.catcher.onDragStart = this.onDragStart;
-				this.catcher.onDragEnd = this.onDragEnd;
-				this.catcher.onDragging = this.onDragging;
-				this.catcher.onTap = this.onTap;
-				this.catcher.onEvent = this.onEvent;
+			__setupCatcher : function(events){
+				
+				this.catcher = new Catcher("", false);
+				
+				for(var e in events){
+					this.catcher[e] = events[e];
+				}
+				// this.catcher.onSwipeLeft = this.onSwipeLeft;
+				// this.catcher.onSwipeRight = this.onSwipeRight;
+				// this.catcher.onSwipeUp = this.onSwipeUp;
+				// this.catcher.onSwipeDown = this.onSwipeDown;
+				// this.catcher.onDragStart = this.onDragStart;
+				// this.catcher.onDragEnd = this.onDragEnd;
+				// this.catcher.onDragging = this.onDragging;
+				// this.catcher.onTap = this.onTap;
+				// this.catcher.onEvent = this.onEvent;
 			},
 
 			onNotAuthenticated : function(){ alert("please log in"); },
-			onEvent : function(data){ },
-			onSwipeLeft : function() { },
-	        onSwipeRight : function(){ },
-	        onSwipeUp : function(){ },
-	        onSwipeDown : function(){ },
-	        onDragStart : function(dx, dy){},
-			onDragEnd : function(dx, dy){},
-			onDragging : function(dx, dy){},
-	        onTap : function() { },
+			// onEvent : function(data){ },
+			// onSwipeLeft : function() { },
+	  //       onSwipeRight : function(){ },
+	  //       onSwipeUp : function(){ },
+	  //       onSwipeDown : function(){ },
+	  //       onDragStart : function(dx, dy){},
+			// onDragEnd : function(dx, dy){},
+			// onDragging : function(dx, dy){},
+	  //       onTap : function() { },
 		};
 	
 		return Client;

@@ -3,26 +3,25 @@ define(["Backbone","underscore","remoats"], function(Backbone, _){
 
 	var RemoteControl = function(){
 
-		var remoatsClient = new Remoats("1234567890",false);
+		var remoatsClient = new Remoats("1234567890",{
+			onEvent : _.bind(function(d) { 
+				if(d.data === "oats.client.registered"){
+				   this.trigger("ready");
+				}
+			},this),
 
-		remoatsClient.onEvent = _.bind(function(d) { 
-		if(d.data === "oats.client.registered"){
-		   this.trigger("ready");
-		 }
-		},this);
+			onSwipeLeft : _.bind(function() { 
+				this.trigger("prev");
+			}, this),
 
-		remoatsClient.onSwipeLeft = _.bind(function() { 
-			this.trigger("prev");
-		}, this);
+			onSwipeRight : _.bind(function(){ 
+				this.trigger("next");
+			}, this),
 
-		remoatsClient.onSwipeRight = _.bind(function(){ 
-			this.trigger("next");
-		}, this);
-
-		remoatsClient.onTap = _.bind(function() { 
-			this.trigger("toggle");
-		}, this);   
-
+			onTap : _.bind(function() { 
+				this.trigger("toggle");
+			}, this)   
+		});
 	}
 
 
