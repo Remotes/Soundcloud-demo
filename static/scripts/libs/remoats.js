@@ -444,28 +444,36 @@ define('oats/Channel',["libs/pusher","settings"], function(Pusher, settings){
     
 	}
 
-	function RemoteSender(channelName){
+	function RemoteSender(channelName, events){
+
+		events = events || {};
+
+		var that = this;
+
 		var pusher = __getPusher();
 		
 		this.channel = pusher.subscribe("presence-" + channelName);
 
 		this.channel.bind('pusher:subscription_succeeded', function() {
 			console.log("pusher initiailized OK");
+			if(typeof events.onReady !== 'undefined'){
+				console.log("[CHANNEL] firing onReady");
+				events.onReady();
+			}
 		});
 
 		this.channel.bind('pusher:subscription_error', function(status) {
 			console.error("pusher scubscription error", status);
+			if(typeof events.onError !== 'undefined'){
+				events.onError();
+			}
 		});
 	}
 
 	RemoteSender.prototype = {
 		send : function(data){
 			this.channel.trigger(settings.actionEventName, data);
-		},
-
-		onReady : function(){},
-		onError : function(){}
-		
+		}	
 	};
 
 	function RemoteReceiver(channelName){
@@ -648,9 +656,10 @@ define('oats/ClientBootstrap',[], function(){
 		return el != null ? el.getAttribute("data-extension-id") : null; 
 	}
 	
+	
 	function InstallExtensionPrompt(){
-		this.promptStyleString = "position: fixed;left: 0;right: 0;bottom: 0;z-index: 10000;border-top: solid 1px #CCC;padding: 5px;";
-		this.promptContent = '<p>You can use Remoats to control this site remotely from your phone. <a id="btn-install-extension" href="#">Enable Remoats</a></p>';
+		this.promptStyleString = "position: fixed;left: 20px;bottom: 20px;z-index: 10000;padding: 10px;background-color: #000000;color: #FFFFFF;opacity: 0.7;border: solid 2px #FDF6E6;border-radius: 6px;";
+		this.promptContent = '<p style="font-size: 12px;">You can use Remoats to control this site remotely from your phone</p><div style="font-size: 12px;padding: 5px;text-align: center;"> <a id="btn-install-extension" href="#" style="color: #F4B58A;font-weight: bold;">Enable Remoats</a>&nbsp;&nbsp;<a id="btn-install-extension" href="#" style="color: #F4B58A;">Learn more</a></div>';
 	}
 
 	InstallExtensionPrompt.prototype = {
@@ -662,7 +671,7 @@ define('oats/ClientBootstrap',[], function(){
 			document.body.insertBefore(prompt, document.body.firstChild);
 
 			document.getElementById("btn-install-extension").addEventListener("click", function(){
-				prompt.innerHTML = "<p>once extension is installed, please refresh your browser</p>";
+				prompt.innerHTML = '<p style="font-size: 12px;">Once extension is installed, please refresh your browser</p>';
 			}, false);
 
 		}	
