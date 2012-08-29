@@ -672,6 +672,7 @@ define('oats/ClientBootstrap',[], function(){
 
 			document.getElementById("btn-install-extension").addEventListener("click", function(){
 				prompt.innerHTML = '<p style="font-size: 12px;">Once extension is installed, please refresh your browser</p>';
+				window.open("https://chrome.google.com/webstore/detail/lachagibcielinidmmnofikacabgppam");
 			}, false);
 
 		}	
@@ -755,27 +756,9 @@ define('oats/Client',["./Catcher", "./ClientBootstrap", "settings"], function(Ca
 				for(var e in events){
 					this.catcher[e] = events[e];
 				}
-				// this.catcher.onSwipeLeft = this.onSwipeLeft;
-				// this.catcher.onSwipeRight = this.onSwipeRight;
-				// this.catcher.onSwipeUp = this.onSwipeUp;
-				// this.catcher.onSwipeDown = this.onSwipeDown;
-				// this.catcher.onDragStart = this.onDragStart;
-				// this.catcher.onDragEnd = this.onDragEnd;
-				// this.catcher.onDragging = this.onDragging;
-				// this.catcher.onTap = this.onTap;
-				// this.catcher.onEvent = this.onEvent;
 			},
 
 			onNotAuthenticated : function(){ alert("please log in"); },
-			// onEvent : function(data){ },
-			// onSwipeLeft : function() { },
-	  //       onSwipeRight : function(){ },
-	  //       onSwipeUp : function(){ },
-	  //       onSwipeDown : function(){ },
-	  //       onDragStart : function(dx, dy){},
-			// onDragEnd : function(dx, dy){},
-			// onDragging : function(dx, dy){},
-	  //       onTap : function() { },
 		};
 	
 		return Client;
