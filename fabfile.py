@@ -1,14 +1,17 @@
 from fabric.api import *
+import os
+
+DROPBOX_DESTINATION_FOLDER = "~/Dropbox/Public/www/"
 
 
-def run():
-    local("foreman start -f Procfile.dev")
+def deploy():
+	exclude_list = [".git", ".gitignore", "fabfile.py", "fabfile.pyc", ".DS_Store"] 
+	exclude_string = "--exclude '%s'" % "' --exclude '".join(exclude_list)
+	
+	print "Building the project ..."
 
-def syncdb():
-    local("python manage.py syncdb --settings=settings.dev") 
+	local("node ./scripts/build/r.js -o ./scripts/build/Application.build.js")
 
-def collectstatic():
-    local("python manage.py collectstatic --settings=settings.prod")
+	print "Deploying to %s" % DROPBOX_DESTINATION_FOLDER
 
-def compile_js():
-    local("node ./static/scripts/build/r.js -o ./static/scripts/build/Application.build.js")
+	local("rsync -av %s %s %s" % (exclude_string, os.getcwd(), DROPBOX_DESTINATION_FOLDER))
