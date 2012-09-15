@@ -13,7 +13,7 @@
       "modernizr" : "libs/modernizr",
       "requireLib" : "libs/require",
       "settings" : "settings.prod",
-      "remoats" : "libs/api.client.prod"
+      "remoats" : "libs/api.client"
     },
 
   	shim: {
@@ -42,7 +42,7 @@
 
         "libs/backbone.tyler" : ['Backbone', 'handlebars'],
         "libs/jquery.gallery" : ['jquery', 'modernizr'],
-        "libs/api.client.prod" : []
+        "libs/api.client" : []
   	},
 
     
