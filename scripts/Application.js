@@ -10,7 +10,7 @@ requirejs.config({
     "soundcloud" : "http://connect.soundcloud.com/sdk", 
     "handlebars" : "libs/handlebars",
     "modernizr" : "libs/modernizr",
-    "remoats" : "libs/api.client.dev"
+    "remotes" : "https://raw.github.com/Remotes/Remotes/master/dist/remotes.min"
   },
 
   shim: {
@@ -43,9 +43,7 @@ requirejs.config({
 
   },
 
-  waitSeconds: 15,
-  urlArgs: "bust=" +  (new Date()).getTime()
-
+  waitSeconds: 15
 });
 
 require([

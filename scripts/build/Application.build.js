@@ -13,7 +13,7 @@
       "modernizr" : "libs/modernizr",
       "requireLib" : "libs/require",
       "settings" : "settings.prod",
-      "remoats" : "libs/api.client"
+      "remotes" : "https://raw.github.com/Remotes/Remotes/master/dist/remotes.min"//"libs/api.client"
     },
 
   	shim: {
