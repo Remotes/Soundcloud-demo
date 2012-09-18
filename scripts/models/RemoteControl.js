@@ -5,8 +5,8 @@ define(["Backbone","underscore","remotes"], function(Backbone, _){
 
 		var remoatsClient = new Remotes("preview").
 			on("Ready", function(){ this.trigger("ready"); } ,this).
-			on("swipe-left", function(){ this.trigger("prev"); }, this).
-			on("swipe-right", function(){ this.trigger("next"); }, this).
+			on("swipe-left", function(){ this.trigger("next"); }, this).
+			on("swipe-right", function(){ this.trigger("prev"); }, this).
 			on("tap", function(){ this.trigger("toggle"); }, this);
 	}
 
